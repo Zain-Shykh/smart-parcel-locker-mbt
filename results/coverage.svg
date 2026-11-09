@@ -15,8 +15,8 @@
 <rect x="353.33333333333337" y="60.0" width="48.0" height="260.0" fill="#e08a1e"/><text x="377.33333333333337" y="57.0" text-anchor="middle" font-size="10">100%</text>
 <rect x="406.66666666666674" y="60.0" width="48.0" height="260.0" fill="#3a9a5b"/><text x="430.66666666666674" y="57.0" text-anchor="middle" font-size="10">100%</text>
 <text x="593.3333333333334" y="338" text-anchor="middle">Transition-pair</text>
-<rect x="513.3333333333334" y="74.82000000000002" width="48.0" height="245.17999999999998" fill="#2a6fbb"/><text x="537.3333333333334" y="71.82000000000002" text-anchor="middle" font-size="10">94%</text>
-<rect x="566.6666666666667" y="75.678" width="48.0" height="244.322" fill="#e08a1e"/><text x="590.6666666666667" y="72.678" text-anchor="middle" font-size="10">94%</text>
+<rect x="513.3333333333334" y="73.65" width="48.0" height="246.35" fill="#2a6fbb"/><text x="537.3333333333334" y="70.65" text-anchor="middle" font-size="10">95%</text>
+<rect x="566.6666666666667" y="74.482" width="48.0" height="245.518" fill="#e08a1e"/><text x="590.6666666666667" y="71.482" text-anchor="middle" font-size="10">94%</text>
 <rect x="620.0" y="60.0" width="48.0" height="260.0" fill="#3a9a5b"/><text x="644.0" y="57.0" text-anchor="middle" font-size="10">100%</text>
 <rect x="60" y="358" width="12" height="12" fill="#2a6fbb"/><text x="76" y="368">random_walk</text>
 <rect x="230" y="358" width="12" height="12" fill="#e08a1e"/><text x="246" y="368">coverage_guided</text>

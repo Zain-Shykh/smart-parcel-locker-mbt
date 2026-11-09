@@ -1,0 +1,8 @@
+model: RESERVE(cust=C1,code='',expired=False) -> Result(accepted=True, message='reserved') RESERVED
+model: DEPOSIT(cust=C1,code='WRONG',expired=False) -> Result(accepted=False, message='invalid_reservation_code') RESERVED
+model: DEPOSIT(cust=C1,code='R-C1',expired=False) -> Result(accepted=True, message='deposited') OCCUPIED
+model: RETRIEVE(cust=C1,code='P-C1',expired=False) -> Result(accepted=True, message='retrieved') AVAILABLE
+generated 20 sequences; first: ['DISABLE', 'CANCEL', 'DISABLE', 'RETRIEVE', 'DEPOSIT']
+reference SUT failures: 0
+MUTANT M05_stale_retrieval_code KILLED by t6 
+  step 8 RETRIEVE(cust=C1,code='P-C1',expired=False): snapshot expected Snapshot(state=<State.AVAILABLE: 'AVAILABLE'>, customer_id=None, reservation_code=None, retrieval_code=None) got Snapshot(state=<State.AVAILABLE: 'AVAILABLE'>, customer_id=None, reservation_code=None, retrieval_code='P-C1') | invariant violated: INV1 AVAILABLE must hold no customer/credential data

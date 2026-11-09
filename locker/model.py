@@ -115,9 +115,9 @@ def candidate_commands(m: LockerModel):
     other = OTHER.get(cust, "C1")
     cmds = [Command(Op.RESERVE, c) for c in ("C1", "C2")]
     cmds.append(Command(Op.CANCEL))
-    for code in {snap.reservation_code or "R-C1", "WRONG", f"P-{cust}", f"R-{other}"}:
+    for code in dict.fromkeys([snap.reservation_code or "R-C1", "WRONG", f"P-{cust}", f"R-{other}"]):  # ordered dedupe: sets would make output depend on PYTHONHASHSEED
         cmds.append(Command(Op.DEPOSIT, customer_id=cust, code=code))
-    for code in {snap.retrieval_code or "P-C1", "WRONG", f"R-{cust}", f"P-{other}"}:
+    for code in dict.fromkeys([snap.retrieval_code or "P-C1", "WRONG", f"R-{cust}", f"P-{other}"]):
         cmds.append(Command(Op.RETRIEVE, customer_id=cust, code=code))
     cmds += [Command(Op.EXPIRE, expired=True), Command(Op.EXPIRE, expired=False),
              Command(Op.DISABLE), Command(Op.ENABLE), Command(Op.INVALID_ACCESS, code="BAD")]

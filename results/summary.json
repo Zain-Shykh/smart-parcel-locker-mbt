@@ -14,9 +14,9 @@
     "random_walk": {
       "state_cov": 1.0,
       "transition_cov": 1.0,
-      "pair_cov": 0.943,
-      "pair_cov_min": 0.9180327868852459,
-      "pair_cov_max": 0.9704918032786886,
+      "pair_cov": 0.9475,
+      "pair_cov_min": 0.921311475409836,
+      "pair_cov_max": 0.9672131147540983,
       "mutation_score_mean": 1.0,
       "mutation_score_min": 1.0,
       "union_summary": {
@@ -41,86 +41,86 @@
         ],
         "score": 1.0
       },
-      "gen_time_s": 0.1131,
-      "exec_time_s": 0.0584,
+      "gen_time_s": 0.0667,
+      "exec_time_s": 0.0341,
       "duplicate_ratio": 0.0312,
       "mean_length": 10.556,
       "reference_failures": 0,
-      "mean_tests_to_first_kill": 19.23,
+      "mean_tests_to_first_kill": 16.08,
       "kill_by_budget": {
-        "1": 0.1538,
-        "5": 0.5077,
-        "10": 0.6923,
-        "25": 0.8308,
-        "50": 0.9385,
+        "1": 0.1231,
+        "5": 0.4769,
+        "10": 0.6308,
+        "25": 0.8462,
+        "50": 0.9231,
         "100": 0.9692,
         "500": 1.0
       },
       "per_mutant": {
         "M01_reserve_when_occupied": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 14.0,
-          "mean_killing_tests": 15.2
+          "mean_tests_to_first_kill": 15.0,
+          "mean_killing_tests": 14.6
         },
         "M02_deposit_in_maintenance": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 8.6,
-          "mean_killing_tests": 107.4
+          "mean_killing_tests": 107.6
         },
         "M03_retrieve_no_auth": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 19.2,
-          "mean_killing_tests": 13.6
+          "mean_tests_to_first_kill": 36.2,
+          "mean_killing_tests": 15.2
         },
         "M04_expire_ignores_flag": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 8.8,
-          "mean_killing_tests": 55.8
+          "mean_killing_tests": 54.4
         },
         "M05_stale_retrieval_code": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 149.0,
-          "mean_killing_tests": 5.6
+          "mean_tests_to_first_kill": 83.0,
+          "mean_killing_tests": 5.8
         },
         "M06_cancel_when_occupied": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 26.0,
-          "mean_killing_tests": 13.2
+          "mean_tests_to_first_kill": 22.0,
+          "mean_killing_tests": 14.6
         },
         "M07_bad_deposit_mutates": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 2.8,
-          "mean_killing_tests": 81.4
+          "mean_tests_to_first_kill": 3.2,
+          "mean_killing_tests": 77.0
         },
         "M08_disable_when_reserved": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 2.0,
-          "mean_killing_tests": 98.4
+          "mean_killing_tests": 97.0
         },
         "M09_enable_when_available": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 2.2,
-          "mean_killing_tests": 226.0
+          "mean_killing_tests": 224.6
         },
         "M10_invalid_access_cancels": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 2.8,
-          "mean_killing_tests": 98.4
+          "mean_killing_tests": 95.0
         },
         "M11_expire_keeps_customer": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 4.8,
-          "mean_killing_tests": 56.0
+          "mean_killing_tests": 58.0
         },
         "M12_deposit_prefix_only": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 5.8,
-          "mean_killing_tests": 31.6
+          "mean_tests_to_first_kill": 16.4,
+          "mean_killing_tests": 33.2
         },
         "M13_rejected_reserve_mutates": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 4.0,
-          "mean_killing_tests": 58.8
+          "mean_killing_tests": 58.2
         },
         "M14_equivalent_reserve_resets_retrieval": {
           "killed_in_seeds": 0,
@@ -132,9 +132,9 @@
     "coverage_guided": {
       "state_cov": 1.0,
       "transition_cov": 1.0,
-      "pair_cov": 0.9397,
-      "pair_cov_min": 0.9344262295081968,
-      "pair_cov_max": 0.9442622950819672,
+      "pair_cov": 0.9443,
+      "pair_cov_min": 0.940983606557377,
+      "pair_cov_max": 0.9540983606557377,
       "mutation_score_mean": 1.0,
       "mutation_score_min": 1.0,
       "union_summary": {
@@ -159,16 +159,16 @@
         ],
         "score": 1.0
       },
-      "gen_time_s": 1.3647,
-      "exec_time_s": 0.0588,
-      "duplicate_ratio": 0.0388,
-      "mean_length": 10.41,
+      "gen_time_s": 0.7717,
+      "exec_time_s": 0.0331,
+      "duplicate_ratio": 0.0324,
+      "mean_length": 10.422,
       "reference_failures": 0,
-      "mean_tests_to_first_kill": 7.26,
+      "mean_tests_to_first_kill": 7.15,
       "kill_by_budget": {
-        "1": 0.1385,
-        "5": 0.5231,
-        "10": 0.7538,
+        "1": 0.1538,
+        "5": 0.5385,
+        "10": 0.8,
         "25": 0.9846,
         "50": 1.0,
         "100": 1.0,
@@ -177,68 +177,68 @@
       "per_mutant": {
         "M01_reserve_when_occupied": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 13.6,
-          "mean_killing_tests": 33.0
+          "mean_tests_to_first_kill": 14.4,
+          "mean_killing_tests": 35.6
         },
         "M02_deposit_in_maintenance": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 2.8,
-          "mean_killing_tests": 155.8
+          "mean_killing_tests": 158.4
         },
         "M03_retrieve_no_auth": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 7.6,
-          "mean_killing_tests": 34.4
+          "mean_tests_to_first_kill": 5.8,
+          "mean_killing_tests": 35.8
         },
         "M04_expire_ignores_flag": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 4.0,
-          "mean_killing_tests": 80.4
+          "mean_killing_tests": 79.0
         },
         "M05_stale_retrieval_code": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 8.4,
-          "mean_killing_tests": 36.4
+          "mean_tests_to_first_kill": 8.2,
+          "mean_killing_tests": 38.6
         },
         "M06_cancel_when_occupied": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 13.6,
-          "mean_killing_tests": 31.0
+          "mean_tests_to_first_kill": 16.2,
+          "mean_killing_tests": 32.8
         },
         "M07_bad_deposit_mutates": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 2.8,
-          "mean_killing_tests": 81.8
+          "mean_killing_tests": 81.0
         },
         "M08_disable_when_reserved": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 4.4,
-          "mean_killing_tests": 80.0
+          "mean_killing_tests": 77.8
         },
         "M09_enable_when_available": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 1.8,
-          "mean_killing_tests": 278.6
+          "mean_killing_tests": 279.4
         },
         "M10_invalid_access_cancels": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 5.0,
-          "mean_killing_tests": 80.6
+          "mean_killing_tests": 78.4
         },
         "M11_expire_keeps_customer": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 2.0,
-          "mean_killing_tests": 83.2
+          "mean_killing_tests": 81.4
         },
         "M12_deposit_prefix_only": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 16.4,
-          "mean_killing_tests": 29.0
+          "mean_tests_to_first_kill": 14.4,
+          "mean_killing_tests": 31.0
         },
         "M13_rejected_reserve_mutates": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 12.0,
-          "mean_killing_tests": 41.6
+          "mean_tests_to_first_kill": 11.2,
+          "mean_killing_tests": 43.6
         },
         "M14_equivalent_reserve_resets_retrieval": {
           "killed_in_seeds": 0,
@@ -277,85 +277,85 @@
         ],
         "score": 1.0
       },
-      "gen_time_s": 2.6411,
-      "exec_time_s": 0.0649,
-      "duplicate_ratio": 0.0012,
-      "mean_length": 11.568,
+      "gen_time_s": 1.5242,
+      "exec_time_s": 0.038,
+      "duplicate_ratio": 0.0032,
+      "mean_length": 11.784,
       "reference_failures": 0,
-      "mean_tests_to_first_kill": 5.75,
+      "mean_tests_to_first_kill": 6.4,
       "kill_by_budget": {
         "1": 0.1077,
         "5": 0.6462,
-        "10": 0.9077,
-        "25": 0.9846,
-        "50": 1.0,
+        "10": 0.8923,
+        "25": 0.9692,
+        "50": 0.9692,
         "100": 1.0,
         "500": 1.0
       },
       "per_mutant": {
         "M01_reserve_when_occupied": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 5.2,
-          "mean_killing_tests": 87.8
+          "mean_tests_to_first_kill": 4.8,
+          "mean_killing_tests": 85.0
         },
         "M02_deposit_in_maintenance": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 1.6,
-          "mean_killing_tests": 110.2
+          "mean_tests_to_first_kill": 1.8,
+          "mean_killing_tests": 117.6
         },
         "M03_retrieve_no_auth": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 3.2,
-          "mean_killing_tests": 88.4
+          "mean_tests_to_first_kill": 5.4,
+          "mean_killing_tests": 87.8
         },
         "M04_expire_ignores_flag": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 2.8,
+          "mean_tests_to_first_kill": 4.4,
           "mean_killing_tests": 82.6
         },
         "M05_stale_retrieval_code": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 4.6,
-          "mean_killing_tests": 123.2
+          "mean_killing_tests": 125.0
         },
         "M06_cancel_when_occupied": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 6.8,
-          "mean_killing_tests": 87.8
+          "mean_tests_to_first_kill": 8.4,
+          "mean_killing_tests": 85.8
         },
         "M07_bad_deposit_mutates": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 3.8,
-          "mean_killing_tests": 83.6
+          "mean_killing_tests": 80.6
         },
         "M08_disable_when_reserved": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 5.6,
-          "mean_killing_tests": 82.2
+          "mean_tests_to_first_kill": 5.2,
+          "mean_killing_tests": 80.4
         },
         "M09_enable_when_available": {
           "killed_in_seeds": 5,
           "mean_tests_to_first_kill": 2.8,
-          "mean_killing_tests": 145.4
+          "mean_killing_tests": 153.8
         },
         "M10_invalid_access_cancels": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 6.2,
-          "mean_killing_tests": 81.4
+          "mean_tests_to_first_kill": 5.0,
+          "mean_killing_tests": 81.2
         },
         "M11_expire_keeps_customer": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 5.2,
-          "mean_killing_tests": 97.0
+          "mean_tests_to_first_kill": 4.8,
+          "mean_killing_tests": 98.6
         },
         "M12_deposit_prefix_only": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 12.4,
-          "mean_killing_tests": 45.4
+          "mean_tests_to_first_kill": 16.2,
+          "mean_killing_tests": 21.6
         },
         "M13_rejected_reserve_mutates": {
           "killed_in_seeds": 5,
-          "mean_tests_to_first_kill": 14.6,
+          "mean_tests_to_first_kill": 16.0,
           "mean_killing_tests": 31.8
         },
         "M14_equivalent_reserve_resets_retrieval": {

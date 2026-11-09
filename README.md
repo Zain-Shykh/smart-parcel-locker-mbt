@@ -33,3 +33,6 @@ Run against one mutant: `SequenceRunner(sut_factory=locker.mutants.M03_RetrieveN
 ## Outputs (`results/`)
 `raw_tests.csv` (every test on reference SUT: id, strategy, sequence, initial/final states, expected/actual result, outcome, details), `coverage.csv`, `mutant_results.csv` (per strategy/seed/mutant, first killing test + sequence), `summary.json`, `summary.md`, `coverage.svg`, `mutation_by_budget.svg`, `time.svg`.
 Results are deterministic for given seeds (timings vary by machine).
+
+## Report and screenshots
+`REPORT.pdf` (source `REPORT.md`) is built with `scripts/build_pdf.sh` (needs pandoc + google-chrome). Demo screenshots in `results/screenshots/` come from `python3 scripts/make_screenshots.py`. Neither is needed to run the experiments.

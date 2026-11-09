@@ -53,3 +53,13 @@ class TestFramework(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestCrossProcessReproducibility(unittest.TestCase):
+    def test_same_seed_same_sequences_across_hash_seeds(self):
+        import subprocess, sys
+        code = ("from locker.generators import ALL_GENERATORS;from locker.runner import fmt_seq;import hashlib;"
+                "print(hashlib.md5(''.join(fmt_seq(s) for G in ALL_GENERATORS for s in G(1,20).generate(40)).encode()).hexdigest())")
+        outs = {subprocess.run([sys.executable, "-c", code], capture_output=True, text=True,
+                               env={"PYTHONHASHSEED": h, "PATH": ""}).stdout for h in ("1", "2", "3")}
+        self.assertEqual(len(outs), 1, outs)

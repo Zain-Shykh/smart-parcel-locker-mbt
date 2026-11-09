@@ -67,29 +67,41 @@ Mutation score = killed / 13. M14 is reported separately.
 ## 7. Experimental setup
 3 strategies x 5 seeds (1-5) x 500 sequences, max length 20, 14 mutants; Python 3.12, Linux, single process. Metrics: state coverage (4), transition coverage (35 = every reachable (src,op,outcome,dst); accepted and rejected outcomes are distinct transitions, enumerated by BFS over the model), **transition-pair coverage** (305 pairs (t1,t2) with t1.dst==t2.src, counted only for adjacent commands in the same sequence), mutation score, generation/execution time, duplicate-sequence ratio, plus mutation score as a function of test budget N (first N sequences).
 
-## 8. Results (mean over 5 seeds)
+## 8. Results (mean over 5 seeds; produced by `python3 -m locker.experiment`)
 | Strategy | State | Transition | Pair (min-max) | Mutation score | Mean tests to 1st kill | Gen s | Exec s | Dup. |
 |---|---|---|---|---|---|---|---|---|
-| random_walk | 100% | 100% | 94.3% (91.8-97.0) | 100% | 19.23 | 0.11 | 0.06 | 3.1% |
-| coverage_guided | 100% | 100% | 94.0% (93.4-94.4) | 100% | 7.26 | 1.36 | 0.06 | 3.9% |
-| transition_pair | 100% | 100% | 100.0% (100-100) | 100% | 5.75 | 2.64 | 0.06 | 0.1% |
+| random_walk | 100% | 100% | 94.8% (92.1-96.7) | 100% | 16.08 | 0.067 | 0.034 | 3.1% |
+| coverage_guided | 100% | 100% | 94.4% (94.1-95.4) | 100% | 7.15 | 0.772 | 0.033 | 3.2% |
+| transition_pair | 100% | 100% | 100.0% (100-100) | 100% | 6.40 | 1.524 | 0.038 | 0.3% |
 
-Mutation score vs budget:
+Mutation score vs budget (first N sequences):
 | Strategy | N=1 | 5 | 10 | 25 | 50 | 100 | 500 |
 |---|---|---|---|---|---|---|---|
-| random_walk | 15% | 51% | 69% | 83% | 94% | 97% | 100% |
-| coverage_guided | 14% | 52% | 75% | 98% | 100% | 100% | 100% |
-| transition_pair | 11% | 65% | 91% | 98% | 100% | 100% | 100% |
+| random_walk | 12% | 48% | 63% | 85% | 92% | 97% | 100% |
+| coverage_guided | 15% | 54% | 80% | 98% | 100% | 100% | 100% |
+| transition_pair | 11% | 65% | 89% | 97% | 97% | 100% | 100% |
 
-Per-mutant detail: `results/summary.md`. Charts: `results/coverage.svg`, `mutation_by_budget.svg`, `time.svg`.
+Per-mutant detail (kill rate, tests-to-first-kill, first killing sequence and observed failure for every strategy/seed): `results/summary.md`, `results/mutant_results.csv`. Reference SUT: 0 failures in all 7500 tests. M14 survived in 15/15 runs (equivalent, section 6).
+
+![Coverage](results/coverage.svg)
+![Mutation score vs budget](results/mutation_by_budget.svg)
+![Time](results/time.svg)
 
 ## 9. Discussion
-- **Highest state/transition coverage:** all tie at 100%/100% at 500 sequences (the model is small). **Pair coverage:** only C reaches 100%; A and B plateau at ~94% (random never produced some rare 2-step combinations in 500 tests).
-- **Most mutants:** all strategies kill 13/13 (score 100%) in every seed at 500 tests; the plain budget protocol cannot separate them. Separation appears with small budgets: at N=10 C 91% vs B 75% vs A 69%; at N=50 A is still 94%.
-- **Higher coverage => higher score?** Not at full budget (A and B have lower pair coverage yet equal score), and not always per mutant: M12 (cross-customer code) and M13 (second customer on rejected RESERVE) were found faster by A (5.8 / 4.0 tests) than by B (16.4 / 12.0) and C (12.4 / 14.6). Label-level coverage ignores data values, so a coverage-saturating strategy can steer away from the input that matters. M05 (stale credentials) needed a mean of 149 tests under A but 8.4 (B) and 4.6 (C) because it requires a *completed* lifecycle, which pair/coverage guidance builds deliberately.
-- **Efficiency:** A generates ~12-24x faster (0.11s vs 1.36s B, 2.64s C); execution time is equal (0.06s). Per detected mutant C is cheapest in tests (5.75 to first kill); in wall clock A is cheapest to produce 500 tests but needs 3.3x more tests to first kill. At this model size every run takes seconds, so test count, not time, is the meaningful cost.
-- **Redundancy:** A and B produced 3-4% duplicate sequences (short sequences repeat), C 0.1%.
-- **Limitations / threats to validity:** single small model (4 states) so coverage saturates; 14 hand-written mutants chosen by me (author bias; mutants resemble the oracle's checks); model and oracle derived by one person from the same text as the SUT, so a shared misreading is possible; A1/A2 assumptions (reject precedence, message compare) would flag a differently-ordered but valid SUT; 5 seeds give small-sample variance (pair-cov range reported); timings are single-machine wall-clock; coverage is abstract (labels), not data-aware; the mutation score of 100% means the experiment is ceiling-limited, so ranking relies on the budget curve and tests-to-kill.
+- **Highest state/transition coverage:** all tie at 100%/100% at 500 sequences (small model). **Pair coverage:** only C reaches 100%; A and B plateau at ~94-95% - some rare 2-step combinations are never produced in 500 tests by random choice or one-step greedy guidance.
+- **Most mutants:** all kill 13/13 in every seed at 500 tests, so the minimum protocol cannot separate them. Separation appears under small budgets: at N=10 C 89% vs B 80% vs A 63%. At N=50 B is already 100%, C 97% (M12, M13 still pending), A 92%.
+- **Higher coverage => higher score?** Not at full budget (A, B have lower pair coverage but equal score), and not per mutant: M13 (second customer needed on a rejected RESERVE) took A 4.0 tests but B 11.2 and C 16.0; M12 (cross-customer code) took ~14-16 tests for all three. Label-level coverage ignores data values, so a coverage-driven strategy can steer away from the input that matters. Conversely M05 (stale credentials after a *completed* lifecycle) needed 83 tests under A vs 8.2 (B) and 4.6 (C): deliberate sequence construction wins when the fault needs a specific deep path.
+- **Efficiency:** A generates 500 tests 11.6x faster than B and 22.8x faster than C (0.067 s vs 0.77 s vs 1.52 s; B/C pay for model cloning and BFS), execution time is equal (~0.035 s). But A needs 2.5x more tests to first kill than C (16.1 vs 6.4). At this model size everything takes seconds, so test count - which costs in real SUT executions - is the meaningful cost.
+- **Redundancy:** A and B generated ~3% duplicate sequences (short sequences repeat), C 0.3%.
+- **Strengths/limits:** A: cheap, unbiased, weak on deep paths. B: fast convergence on transition coverage, one-step horizon, data-blind. C: best fault-per-test and full pair coverage, most expensive generation, still data-blind.
+- **Threats to validity:** a single small model (4 states) so coverage saturates and the score ceiling hides differences; 14 hand-written mutants by the same author (bias, resemble oracle checks); model, oracle and SUT derived from the same requirement text so a shared misreading is possible; assumptions A1/A2 (reject precedence, message comparison) would flag a differently-ordered but valid SUT; 5 seeds is a small sample (pair-coverage range shown); wall-clock timings are single-machine; reproducibility was verified across `PYTHONHASHSEED` values (an early version depended on set ordering and was fixed, `tests/test_framework.py`).
 
 ## 10. Conclusion
-All strategies reach full state/transition coverage and full mutation score with 500 sequences; transition-pair planning gives complete pair coverage and the best early fault detection per test, coverage-guided is a cheap middle ground, and random is fastest to generate but needs more tests and is weakest on faults needing deep sequences (M05). Coverage did not predict detection for data-dependent faults (M12, M13). Improvements: data-aware coverage (customer/code classes), longer-lookahead or mutant-feedback guidance, more compartments, larger mutant set including instructor variants.
+All strategies reach full state/transition coverage and a 100% mutation score with 500 sequences. Transition-pair planning gives complete pair coverage and the best early detection per test, coverage-guided is a cheap middle ground, random is fastest to generate but needs the most tests and is weakest on faults requiring deep sequences (M05). Coverage did not predict detection for data-dependent faults (M12, M13). Improvements: data-aware coverage (customer/credential classes), longer lookahead or mutant-feedback guidance, multi-compartment model, instructor-supplied variants.
+
+## 11. Demonstration (screenshots of `python3 demo.py`, the unit tests and the experiment)
+1. Executable model (valid and rejected commands): ![](results/screenshots/1_model_execution.png)
+2. Test generation and execution against the reference SUT: ![](results/screenshots/2_generation_and_execution.png)
+3. Injected fault M05 detected: ![](results/screenshots/3_fault_detection.png)
+4. Unit tests: ![](results/screenshots/4_unit_tests.png)
+5. Experiment results: ![](results/screenshots/5_experiment_results.png)
